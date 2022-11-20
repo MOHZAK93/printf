@@ -24,34 +24,42 @@ int _putchar(char c)
 int _printf(const char *format, ...)
 {
 	int num = 0, i = 0, count;
-	va_list args;
 
-	va_start(args, format);
-
-	while (format[i] != '\0')
+	if (format != NULL)
 	{
-		if (format[i] == '%' && format[++i] == 'c')
+		va_list args;
+		char *str, *s;
+
+		count = _strlen(format);
+		s = malloc(sizeof(char) * (count + 1));
+		if (s == NULL)
+			return (-1);
+		va_start(args, format);
+		while (format[i] != '\0')
 		{
-			_putchar(va_arg(args, int));
-			num++;
+			if (format[i] == '%' && format[++i] == 'c')
+			{
+				_putchar(va_arg(args, int));
+				num++;
+				i++;
+			}
+			if (format[i] == 's' && format[i - 1] == '%')
+			{
+				str = va_arg(args, char *);
+				count = _strlen(str);
+				write(1, str, count);
+				num += count;
+			}
+			else
+			{
+				_putchar(format[i]);
+				num++;
+			}
 			i++;
 		}
-		if (format[i] == 's' && format[i - 1] == '%')
-		{
-			char *str = va_arg(args, char *);
-
-			for (count = 0; str[count] != '\0'; count++)
-				;
-			write(1, str, count);
-			num += count;
-		}
-		else
-		{
-			_putchar(format[i]);
-			num++;
-		}
-		i++;
+		va_end(args);
+		free(s);
+		return (num - 1);
 	}
-	va_end(args);
-	return (num - 1);
+	return (-1);
 }
