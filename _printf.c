@@ -1,33 +1,53 @@
 #include "main.h"
-
 /**
-  *_putchar - function that prints characters
-  *
-  *@c: character argument
-  *
-  *Return: character
-  */
-
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
-  *_printf - function that produces output
-  *according to format
-  *
-  *@format: character string
-  *
-  *Return: number of characters
-  */
-
+ * _printf - is a function that prints
+ * @format: gives the format to the function
+ * cases - d, i, s, c, %
+ * Return: a string.
+ */
 int _printf(const char *format, ...)
 {
-	unsigned int num = 0, i, count;
+	va_list ap;
+	int count = -1;
+
+	pr_f ops[] = {
+	{"c", print_c},
+	{"s", print_s},
+	{"d", print_d},
+	{"%", print_mod},
+	{"i", print_d},
+	{"r", print_r},
+	{NULL, NULL}
+	};
 
 	if (format != NULL)
 	{
+		va_start(ap, format);
+		count = _funcion(format, ops, ap);
+		va_end(ap);
+	}
+	return (count);
+}
+
+/**
+ * _funcion - Helper function to print and call functions.
+ * @format: String recieved.
+ * @ops: special options.
+ * @ap: arguments
+ * Return: number of chars printed
+ */
+
+int _funcion(const char *format, pr_f ops[], va_list ap)
+{
+<<<<<<< HEAD
+	unsigned int num = 0, i, count;
+=======
+	int count = 0, i, j;
+>>>>>>> 5b47b1c0d7e5184b5ac9edc16e3be9ae734bcb77
+
+	for (i = 0; format[i] != '\0'; i++)
+	{
+<<<<<<< HEAD
 		va_list args;
 		char *str, *s;
 
@@ -57,6 +77,40 @@ int _printf(const char *format, ...)
 		va_end(args);
 		free(s);
 		return (i);
+=======
+		if (format[i] == '%')
+		{
+			if (format[i + 1] == '\0')
+			{
+				return (-1);
+			}
+			for (j = 0; ops[j].op != NULL; j++)
+			{
+				if (format[i + 1] == ops[j].op[0])
+				{
+					count = count + ops[j].f(ap);
+					break;
+				}
+			}
+			if (ops[j].op == NULL && format[i + 1] != ' ')
+			{
+				if (format[i + 1] != '\0')
+				{
+					_putchar(format[i]);
+					_putchar(format[i + 1]);
+					count = count + 2;
+				}
+				else
+					return (-1);
+			}
+			i = i + 1;
+		}
+		else
+		{
+			_putchar(format[i]);
+			count = count + 1;
+		}
+>>>>>>> 5b47b1c0d7e5184b5ac9edc16e3be9ae734bcb77
 	}
-	return (-1);
+	return (count);
 }
