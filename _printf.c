@@ -12,6 +12,7 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
+
 /**
   *_printf - function that produces output
   *according to format
@@ -23,7 +24,7 @@ int _putchar(char c)
 
 int _printf(const char *format, ...)
 {
-	int num = 0, i = 0, count;
+	unsigned int num = 0, i, count;
 
 	if (format != NULL)
 	{
@@ -35,31 +36,27 @@ int _printf(const char *format, ...)
 		if (s == NULL)
 			return (-1);
 		va_start(args, format);
-		while (format[i] != '\0')
+		while (format && format[i] != '\0')
 		{
-			if (format[i] == '%' && format[++i] == 'c')
+			if (format[0] == '%' && format[1] == NULL)
 			{
-				_putchar(va_arg(args, int));
-				num++;
+				return (-1);
+			}
+			i = _strncat(buffer, format, i);
+			if (format[i] == '%')
+			{
 				i++;
+				str = funch(format[i], args);
+				_strcat(buffer, str);
 			}
-			if (format[i] == 's' && format[i - 1] == '%')
-			{
-				str = va_arg(args, char *);
-				count = _strlen(str);
-				write(1, str, count);
-				num += count;
-			}
-			else
-			{
-				_putchar(format[i]);
-				num++;
-			}
-			i++;
+			if (format[i] != NULL)
+				i++;
 		}
+		i = _strlen(buffer);
+		write(1, buffer, i);
 		va_end(args);
 		free(s);
-		return (num - 1);
+		return (i);
 	}
 	return (-1);
 }
