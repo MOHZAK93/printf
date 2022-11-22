@@ -1,19 +1,6 @@
 #include "main.h"
 
 /**
-  *_putchar - function that prints characters
-  *
-  *@c: character argument
-  *
-  *Return: character
-  */
-
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
   *_printf - function that produces output
   *according to format
   *
@@ -59,4 +46,12 @@ int _printf(const char *format, ...)
 		return (i);
 	}
 	return (-1);
+}
+int main(void)
+{
+	_printf("Character:[%c]\n", 'H');
+	printf("Character:[%c]\n", 'H');
+	_printf("String:[%s]\n", "I am a string !");
+	printf("String:[%s]\n", "I am a string !");
+	return (0);
 }
