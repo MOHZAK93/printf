@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-  *_str_per - function that returns %
+  *_str_percent - function that returns %
   *
   *@args: function arguments
   *

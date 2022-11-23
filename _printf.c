@@ -24,6 +24,7 @@ int _printf(const char *format, ...)
 		if (buffer == NULL)
 			return (-1);
 		va_start(args, format);
+		i = 0;
 		while (format && format[i] != '\0')
 		{
 			if (format[0] == '%' && format[1] == '\0')
@@ -47,10 +48,4 @@ int _printf(const char *format, ...)
 		return (i);
 	}
 	return (-1);
-}
-int main(void)
-{
-	_printf("Character:[%c]\n", 'H');
-	_printf("String:[%s]\n", "I am a string !");
-	return (0);
 }
