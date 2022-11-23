@@ -10,7 +10,7 @@
 
 char *_str_int(va_list args)
 {
-	unsigned int num, hold, i, j;
+	int num, hold, i, j;
 	char *str;
 
 	str = malloc(10 * sizeof(*str));
@@ -19,7 +19,7 @@ char *_str_int(va_list args)
 	if (num < 0)
 	{
 		num *= -1;
-		str[0] == '-';
+		str[0] = '-';
 		i = 1;
 	}
 	else
@@ -28,10 +28,10 @@ char *_str_int(va_list args)
 	}
 
 	j = 1;
-	hold = n;
-	while (n > 9)
+	hold = num;
+	while (num > 9)
 	{
-		n = n / 10;
+		num = num / 10;
 		j *= 10;
 	}
 	while (j >= 1)

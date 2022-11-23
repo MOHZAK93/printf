@@ -15,9 +15,9 @@ int _strncat(char *buffer, const char *format, int n)
 	int i;
 
 	i = 0;
-	while (buffer[i] != NULL)
+	while (buffer[i] != '\0')
 		i++;
-	while (format[n] != NULL && format[n] != '%')
+	while (format[n] != '\0' && format[n] != '%')
 	{
 		buffer[i] = format[n];
 		i++;

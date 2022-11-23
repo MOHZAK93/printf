@@ -10,8 +10,10 @@
 
 char *_str_char(va_list args)
 {
-	char *str = malloc(2 * (*str));
+	char *str;
 
-	str = va_arg(args, int);
+	str = malloc(2 * sizeof(*str));
+
+	str[0] = va_arg(args, int);
 	return (str);
 }

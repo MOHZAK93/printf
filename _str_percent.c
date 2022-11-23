@@ -8,7 +8,7 @@
   *Return: pointer to %
   */
 
-char *_str_per(va_list args)
+char *_str_percent(va_list args)
 {
 	char *str;
 

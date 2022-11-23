@@ -20,6 +20,7 @@ typedef struct print
 	char spec;
 	char *(*func)(va_list args);
 } list;
+
 int _putchar(char c);
 int _printf(const char *format, ...);
 int _strlen(const char *s);

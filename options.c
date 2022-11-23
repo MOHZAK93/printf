@@ -16,11 +16,11 @@ char *funch(const char opt, va_list args)
 	list select[] = {
 		{'c', _str_char},
 		{'s', _str_string},
-		{'%', _str_per},
+		{'%', _str_percent},
 		{'i', _str_int},
 		{'d', _str_int},
 		{'l', _str_int},
-		{NULL, NULL}
+		{'\0', '\0'}
 	};
 
 	int i;

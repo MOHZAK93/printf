@@ -11,21 +11,22 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int num = 0, i, count;
+	unsigned int i, count;
 
 	if (format != NULL)
 	{
 		va_list args;
-		char *str, *s;
+		char *str, *buffer;
 
 		count = _strlen(format);
-		s = malloc(sizeof(char) * (count + 1));
-		if (s == NULL)
+		buffer = malloc(sizeof(char) * (count + 1));
+
+		if (buffer == NULL)
 			return (-1);
 		va_start(args, format);
 		while (format && format[i] != '\0')
 		{
-			if (format[0] == '%' && format[1] == NULL)
+			if (format[0] == '%' && format[1] == '\0')
 			{
 				return (-1);
 			}
@@ -36,13 +37,13 @@ int _printf(const char *format, ...)
 				str = funch(format[i], args);
 				_strcat(buffer, str);
 			}
-			if (format[i] != NULL)
+			if (format[i] != '\0')
 				i++;
 		}
 		i = _strlen(buffer);
 		write(1, buffer, i);
 		va_end(args);
-		free(s);
+		free(buffer);
 		return (i);
 	}
 	return (-1);
@@ -50,8 +51,6 @@ int _printf(const char *format, ...)
 int main(void)
 {
 	_printf("Character:[%c]\n", 'H');
-	printf("Character:[%c]\n", 'H');
 	_printf("String:[%s]\n", "I am a string !");
-	printf("String:[%s]\n", "I am a string !");
 	return (0);
 }
