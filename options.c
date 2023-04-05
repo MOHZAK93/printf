@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-  *funch - selection menu
+  *options - selection menu
   *
   *@opt: input character
   *@args: variadic arguments
