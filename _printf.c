@@ -1,5 +1,6 @@
 #include "main.h"
-
+#include <stdio.h>
+#include <unistd.h>
 /**
   *_printf - function that produces output
   *according to format
@@ -11,41 +12,26 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int i, count;
+	unsigned int i = 0;
+	va_list args;
+	char *str;
+	size_t count;
 
-	if (format != NULL)
+	va_start(args, format);
+
+	while (format && format[i])
 	{
-		va_list args;
-		char *str, *buffer;
-
-		count = _strlen(format);
-		buffer = malloc(sizeof(char) * (count + 1));
-
-		if (buffer == NULL)
-			return (-1);
-		va_start(args, format);
-		i = 0;
-		while (format && format[i] != '\0')
+		if (format[i] == '%')
 		{
-			if (format[0] == '%' && format[1] == '\0')
-			{
-				return (-1);
-			}
-			i = _strncat(buffer, format, i);
-			if (format[i] == '%')
-			{
-				i++;
-				str = funch(format[i], args);
-				_strcat(buffer, str);
-			}
-			if (format[i] != '\0')
-				i++;
+			i++;
+			str = (options(format[i], args));
+			count = _strlen(str);
+			write(1, str, count);
+			i++;
 		}
-		i = _strlen(buffer);
-		write(1, buffer, i);
-		va_end(args);
-		free(buffer);
-		return (i);
+		write(1, &format[i], 1);
+		i++;
 	}
-	return (-1);
+	va_end(args);
+	return (i);
 }
