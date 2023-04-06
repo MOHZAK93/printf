@@ -12,7 +12,7 @@ char *_str_char(va_list args)
 {
 	char *str;
 
-	str = malloc(2 * sizeof(*str));
+	str = malloc(sizeof(*str));
 
 	str[0] = va_arg(args, int);
 	return (str);
