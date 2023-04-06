@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 /**
   *_printf - function that produces output
   *according to format
@@ -16,7 +17,10 @@ int _printf(const char *format, ...)
 	va_list args;
 	char *str;
 	size_t count = 0;
-	ssize_t num = 0;
+	int num = 0;
+
+	if (_strlen(format) <= 0)
+		return (0);
 
 	va_start(args, format);
 
