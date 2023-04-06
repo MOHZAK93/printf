@@ -22,7 +22,7 @@ int _str_int(va_list args)
 	}
 	if (num < 10)
 		return (count += _putchar(num + '0'));
-	
+
 	numx = num;
 
 	while (numx > 9)
