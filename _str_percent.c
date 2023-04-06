@@ -12,7 +12,6 @@ char *_str_percent(va_list args)
 {
 	char *str = "%";
 
-	if (va_arg(args, int) == *str)
-		return (str);
+	(void)args;
 	return (str);
 }
