@@ -5,14 +5,21 @@
   *
   *@args: function argument
   *
-  *Return: string pointer
+  *Return: number of characters
   */
 
-char *_str_string(va_list args)
+int _str_string(va_list args)
 {
+	int i, j = 0;
 	char *str = va_arg(args, char *);
 
-	if (str == NULL)
-		return (NULL);
-	return (str);
+	if (!str)
+		str = NULL;
+
+	if (!str[0])
+		return (-1);
+
+	for (i = 0; str[i] != '\0'; i++)
+		j += _putchar(str[i]);
+	return (j);
 }

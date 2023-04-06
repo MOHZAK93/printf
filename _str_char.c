@@ -8,12 +8,11 @@
   *Return: character pointer
   */
 
-char *_str_char(va_list args)
+int _str_char(va_list args)
 {
-	char *str;
+	char str = va_arg(args, int);
 
-	str = malloc(sizeof(*str));
+	_putchar(str);
 
-	str[0] = va_arg(args, int);
-	return (str);
+	return (1);
 }

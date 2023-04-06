@@ -15,29 +15,23 @@ int _printf(const char *format, ...)
 {
 	unsigned int i = 0;
 	va_list args;
-	char *str;
 	size_t count = 0;
-	int num = 0;
 
 	va_start(args, format);
 
-	if (format)
+	if (!format || (format[0] == '%' && !format[0]))
+		return (-1);
+	while (format && format[i])
 	{
-		while (format && format[i])
+		if (format[i] == '%')
 		{
-			if (format[i] == '%')
-			{
-				i++;
-				str = options(format[i], args);
-				count = _strlen(str);
-				num += write(1, str, count);
-				i++;
-			}
-			num += write(1, &format[i], 1);
+			i++;
+			count += options(format[i], args);
 			i++;
 		}
-		va_end(args);
-		return (num);
+		count += _putchar(format[i]);
+		i++;
 	}
-	return (-1);
+	va_end(args);
+	return (count);
 }

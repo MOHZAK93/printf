@@ -5,13 +5,14 @@
   *
   *@args: function arguments
   *
-  *Return: pointer to %
+  *Return: number of characters
   */
 
-char *_str_percent(va_list args)
+int _str_percent(va_list args)
 {
-	char *str = "%";
-
 	(void)args;
-	return (str);
+
+	_putchar(37);
+
+	return (1);
 }

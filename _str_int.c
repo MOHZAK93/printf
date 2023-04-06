@@ -1,44 +1,40 @@
 #include "main.h"
 
 /**
-  *_str_int - function that returns a pointer to int charaters
+  *_str_int - function that prints integers
   *
   *@args: arguments of function
   *
-  *Return: pointer to string
+  *Return: number of characters
   */
 
-char *_str_int(va_list args)
+int _str_int(va_list args)
 {
-	int num, hold, i, j;
-	char *str;
+	int count = 0, j = 1;
+	long int num, numx;
 
-	str = malloc(10 * sizeof(*str));
 	num = va_arg(args, int);
 
 	if (num < 0)
 	{
-		num *= -1;
-		str[0] = '-';
-		i = 1;
+		count += _putchar('-');
+		num = num * -1;
 	}
-	else
-	{
-		i = 0;
-	}
+	if (num < 10)
+		return (count += _putchar(num + '0'));
+	
+	numx = num;
 
-	j = 1;
-	hold = num;
-	while (num > 9)
+	while (numx > 9)
 	{
-		num = num / 10;
+		numx = numx / 10;
 		j *= 10;
 	}
 	while (j >= 1)
 	{
-		str[i] = (((hold / j) % 10) + 48);
-		i++;
+		count += _putchar(((num / j) % 10) + 48);
 		j = j / 10;
 	}
-	return (str);
+
+	return (count);
 }
