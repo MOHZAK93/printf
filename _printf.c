@@ -12,26 +12,30 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0;
+	unsigned int i = 0, count = 0;
 	va_list args;
 	char *str;
-	size_t count;
+	ssize_t num = 0;
 
 	va_start(args, format);
 
-	while (format && format[i])
+	if (format)
 	{
-		if (format[i] == '%')
+		while (format && format[i])
 		{
-			i++;
-			str = (options(format[i], args));
-			count = _strlen(str);
-			write(1, str, count);
+			if (format[i] == '%')
+			{
+				i++;
+				str = (options(format[i], args));
+				count = _strlen(str);
+				num += write(1, str, count);
+				i++;
+			}
+			num += write(1, &format[i], 1);
 			i++;
 		}
-		write(1, &format[i], 1);
-		i++;
+		va_end(args);
+		return (num);
 	}
-	va_end(args);
-	return (i);
+	return (-1);
 }
