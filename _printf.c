@@ -19,9 +19,6 @@ int _printf(const char *format, ...)
 	size_t count = 0;
 	int num = 0;
 
-	if (_strlen(format) <= 0)
-		return (0);
-
 	va_start(args, format);
 
 	if (format)
@@ -31,7 +28,7 @@ int _printf(const char *format, ...)
 			if (format[i] == '%')
 			{
 				i++;
-				str = (options(format[i], args));
+				str = options(format[i], args);
 				count = _strlen(str);
 				num += write(1, str, count);
 				i++;
