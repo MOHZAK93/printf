@@ -33,6 +33,7 @@ int _str_binary(va_list args)
 	{
 		_putchar(ptr[j] + '0');
 	}
-
+	free(ptr);
+	ptr = NULL;
 	return (i);
 }
