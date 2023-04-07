@@ -32,4 +32,5 @@ void *_strcat(char *buffer, char *src);
 int (*fun)(va_list args);
 int _strncat(char *buff, const char *format, int n);
 int _putchar(char c);
+int _str_binary(va_list args);
 #endif

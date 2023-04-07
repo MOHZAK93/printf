@@ -20,6 +20,7 @@ int options(const char opt, va_list args)
 		{'d', _str_int},
 		{'l', _str_int},
 		{'u', _str_int},
+		{'b', _str_binary},
 		{0, NULL}
 	};
 
@@ -28,6 +29,12 @@ int options(const char opt, va_list args)
 		if (select[i].spec == opt)
 			count += select[i].func(args);
 		i++;
+	}
+
+	if (count == 0)
+	{
+		count += _putchar('%');
+		count += _putchar(opt);
 	}
 
 	return (count);
