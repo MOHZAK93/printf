@@ -29,11 +29,10 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			if (!format[i] || (format[i] == ' ' && !format[i + 1]))
-			{
-				count = -1;
 				break;
-			}
+
 			count += options(format[i], args);
+
 			if (count == 0)
 				count += _putchar(format[i]);
 		}
