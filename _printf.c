@@ -13,23 +13,32 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0;
+	int i = 0, count = 0;
 	va_list args;
-	size_t count = 0;
 
 	va_start(args, format);
 
-	if (!format || (format[0] == '%' && !format[0]))
+	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+
 	while (format && format[i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
+			if (!format[i] || (format[i] == ' ' && !format[i + 1]))
+			{
+				count = -1;
+				break;
+			}
 			count += options(format[i], args);
-			i++;
+			if (count == 0)
+				count += _putchar(format[i]);
 		}
-		count += _putchar(format[i]);
+		else
+			count += _putchar(format[i]);
 		i++;
 	}
 	va_end(args);
