@@ -13,7 +13,7 @@
 
 int _printf(const char *format, ...)
 {
-	int i = 0, count = 0;
+	int i = 0, count = 0, count_f;
 	va_list args;
 
 	va_start(args, format);
@@ -25,6 +25,7 @@ int _printf(const char *format, ...)
 
 	while (format && format[i])
 	{
+		count_f = 0;
 		if (format[i] == '%')
 		{
 			i++;
@@ -33,15 +34,22 @@ int _printf(const char *format, ...)
 				count = -1;
 				break;
 			}
-			count += options(format[i], args);
-			if (count == 0)
+			count_f += options(format[i], args);
+			if (count_f == 0)
 				count += _putchar(format[i]);
-			if (count == -1)
+			if (count_f == -1)
 				count = -1;
 		}
 		else
-			count += _putchar(format[i]);
+		{
+			if (count == -1)
+				_putchar(format[i]);
+			else
+				count += _putchar(format[i]);
+		}
 		i++;
+		if (count != -1)
+			count += count_f;
 	}
 	va_end(args);
 	return (count);
