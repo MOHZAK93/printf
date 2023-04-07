@@ -14,6 +14,11 @@ int _str_binary(va_list args)
 	int i = 0, j = 0, num, str = va_arg(args, int);
 	char *ptr;
 
+	if (str == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
 	num = str;
 	while (str)
 	{
