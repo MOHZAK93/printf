@@ -36,6 +36,8 @@ int _printf(const char *format, ...)
 			count += options(format[i], args);
 			if (count == 0)
 				count += _putchar(format[i]);
+			if (count == -1)
+				count = -1;
 		}
 		else
 			count += _putchar(format[i]);
