@@ -24,6 +24,7 @@ typedef struct print
 int _printf(const char *format, ...);
 int _strlen(const char *s);
 int _str_int(va_list args);
+int _str_unsigned(va_list args);
 int _str_char(va_list args);
 int _str_string(va_list args);
 int _str_percent(va_list args);

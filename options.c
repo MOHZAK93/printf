@@ -19,7 +19,7 @@ int options(const char opt, va_list args)
 		{'i', _str_int},
 		{'d', _str_int},
 		{'l', _str_int},
-		{'u', _str_int},
+		{'u', _str_unsigned},
 		{'b', _str_binary},
 		{'o', _str_octal},
 		{'x', _str_hex},
