@@ -11,7 +11,8 @@
 
 int _str_hex(va_list args)
 {
-	int i = 0, j = 0, remainder, num, str = va_arg(args, int);
+	long unsigned int remainder, num, str = va_arg(args, long unsigned int);
+	int i = 0, j = 0;
 	char *ptr;
 
 	if (str == 0)
