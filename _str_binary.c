@@ -27,6 +27,8 @@ int _str_binary(va_list args)
 		i++;
 	}
 	ptr = malloc(sizeof(char) * i);
+	if (!ptr)
+		return (-1);
 
 	while (num)
 	{
