@@ -21,6 +21,9 @@ int options(const char opt, va_list args)
 		{'l', _str_int},
 		{'u', _str_int},
 		{'b', _str_binary},
+		{'o', _str_octal},
+		{'x', _str_hex},
+		{'X', _str_heX},
 		{0, NULL}
 	};
 

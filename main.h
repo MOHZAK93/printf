@@ -33,4 +33,7 @@ int (*fun)(va_list args);
 int _strncat(char *buff, const char *format, int n);
 int _putchar(char c);
 int _str_binary(va_list args);
+int _str_octal(va_list args);
+int _str_hex(va_list args);
+int _str_heX(va_list args);
 #endif
